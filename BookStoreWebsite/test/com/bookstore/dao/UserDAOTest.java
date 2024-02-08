@@ -2,8 +2,11 @@ package com.bookstore.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
@@ -11,7 +14,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.bookstore.entity.Users;
+import com.bookstore.entity.entity3.Users;
+
 
 public class UserDAOTest {
 	private static EntityManagerFactory entityManagerFactory;
@@ -58,7 +62,48 @@ public class UserDAOTest {
 		String actual = user.getPassword();
 		assertEquals(expected,actual);
 	}
-	
+	@Test
+	public void testGetUsersFound() {
+		Integer userId = 5;
+		com.bookstore.entity.entity3.Users user= userDao.get(userId);
+		System.out.println(user.getEmail());
+		assertNotNull(user);
+		
+	}
+	@Test
+	public void testGetUsersNotFound() {
+		Integer userId = 99;
+		Users user = userDao.get(userId);
+		assertNull(user);
+	}
+	@Test
+	public void testDeleteUsers() {
+		Integer userId = 10;
+		userDao.delete(userId);
+		
+		Users user = userDao.get(userId);
+		
+		assertNull(user);
+	}
+	@Test(expected = EntityNotFoundException.class)
+	public void testDeleteNonExistUsers() {
+		Integer userId = 55;
+		userDao.delete(userId);
+	}
+	@Test
+	public void testListAll() {
+		List<Users>listUsers = userDao.listAll();
+//		System.out.println(listUsers.size());
+		for (Users users : listUsers) {
+			System.out.println(users.getEmail());
+		}
+		assertTrue(listUsers.size() > 0);
+	}
+	@Test
+	public void testCount() {
+		long totalUsers  = userDao.count();
+		assertTrue(totalUsers  == 7);
+	}
 	@AfterClass
 	public static void tearDownClass() {
 		entityManager.close();
