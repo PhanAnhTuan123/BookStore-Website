@@ -16,7 +16,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Users.findAll",query = "Select u from Users u ORDER BY u.fullName"),
-	@NamedQuery(name = "Users.countAll",query="Select Count(*) from Users u")
+	@NamedQuery(name = "Users.countAll",query="Select Count(u.userId) from Users u")
 })
 public class Users implements java.io.Serializable {
 

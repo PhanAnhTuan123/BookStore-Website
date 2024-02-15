@@ -1,11 +1,11 @@
 package com.bookstore.service;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+//import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-
+import javax.persistence.PersistenceException;
 import com.bookstore.dao.UserDAO;
 import com.bookstore.entity.entity3.Users;
 
@@ -16,11 +16,14 @@ public class UsersServices {
 	
 	
 	public UsersServices() {
+
 		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
 		entityManager = entityManagerFactory.createEntityManager();
 		userDao = new UserDAO(entityManager);
-		 
 	}
+
+
+	
 
 
 	public List<Users> listUser() {
