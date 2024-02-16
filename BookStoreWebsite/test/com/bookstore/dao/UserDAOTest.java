@@ -100,6 +100,12 @@ public class UserDAOTest {
 		assertTrue(listUsers.size() > 0);
 	}
 	@Test
+	public void testFindByEmail() {
+		String email = "tuan@gmail.com";
+		Users user = userDao.findByEmail(email);
+		assertNull(user);
+	}
+	@Test
 	public void testCount() {
 		long totalUsers  = userDao.count();
 		assertTrue(totalUsers  == 7);

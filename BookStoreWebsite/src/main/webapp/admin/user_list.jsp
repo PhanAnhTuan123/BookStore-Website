@@ -36,7 +36,7 @@
 					<td>${user.email }</td>
 					<td>${user.fullname }</td>
 					<td>
-						<a href="">Edit</a> &nbsp;
+						<a href="edit_user?id=${user.id}">Edit</a> &nbsp;
 						<a href="">Delete</a>
 						
 					</td>
