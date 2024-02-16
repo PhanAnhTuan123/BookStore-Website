@@ -22,9 +22,8 @@ public class ListUsersServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Get goooooooooooo!");
 		UsersServices usersServices = new UsersServices();
-		List<Users>listUsers =  usersServices.listUser();
+		List<Users>listUsers =  usersServices.listUser(request,response);
 		
 		for (Users users : listUsers) {
 			System.out.println(users.toString());

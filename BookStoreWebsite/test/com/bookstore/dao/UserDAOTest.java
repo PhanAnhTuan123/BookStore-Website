@@ -14,7 +14,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.bookstore.entity.entity3.Users;
+import com.bookstore.entity.entity3.*;
 
 
 public class UserDAOTest {
