@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.controller.admin.BaseServlet;
+import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.CategoryServices;
 
 /**
