@@ -9,18 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.service.UsersServices;
 
-@WebServlet("/admin/update_user")
-public class UpdateUserServlet extends HttpServlet {
+/**
+ * Servlet implementation class DeleteUserServlet
+ */
+@WebServlet("/admin/delete_user")
+public class DeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public UpdateUserServlet() {
+
+    public DeleteUserServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsersServices services = new UsersServices(request, response);
-		services.updateUser();
+		services.deleteUser();
 	}
+
+
 
 }

@@ -90,4 +90,13 @@ public class UsersServices {
 		}
 
 	}
+
+	public void deleteUser() throws ServletException, IOException {
+		int userId = Integer.parseInt(request.getParameter("id"));
+		userDao.delete(userId);
+		String message = "User has been deleted successfully";
+		request.setAttribute("message", message);
+		listUser(request, response);
+		
+	}
 }

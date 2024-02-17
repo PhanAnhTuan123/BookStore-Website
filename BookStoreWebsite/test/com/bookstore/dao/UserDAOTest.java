@@ -17,9 +17,8 @@ import org.junit.Test;
 import com.bookstore.entity.entity3.*;
 
 
-public class UserDAOTest {
-	private static EntityManagerFactory entityManagerFactory;
-	private static EntityManager entityManager;
+public class UserDAOTest extends BaseDAOTest{
+
 	private static UserDAO userDao;
 	
 	@BeforeClass
@@ -110,6 +109,7 @@ public class UserDAOTest {
 		long totalUsers  = userDao.count();
 		assertTrue(totalUsers  == 7);
 	}
+
 	@AfterClass
 	public static void tearDownClass() {
 		entityManager.close();
