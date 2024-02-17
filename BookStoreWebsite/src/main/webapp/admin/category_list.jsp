@@ -48,7 +48,7 @@
 	<script>
 		function confirmDetete(categoryId){
 	if(confirm("Are you sure you want to delete the category with ID: "+categoryId + " ?")){
-		window.location = 'delete_category?id='+categoryId;
+		window.location = 'delete_category?id='+cat	egoryId;
 	}
 		}
 	</script>
