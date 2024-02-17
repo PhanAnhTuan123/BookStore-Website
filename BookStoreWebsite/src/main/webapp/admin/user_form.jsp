@@ -6,19 +6,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>BookStore Administration</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div align="center">
 
-		<h2>
+		<h1 class="pageheading">
 			<c:if test="${user!=null }">
 				Edit user
 			</c:if>
 			<c:if test="${user==null }">
 				Create user
 			</c:if>
-		</h2>
+		</h1>
 	</div>
 	<div align="center">
 		<c:if test="${user!=null }">
@@ -30,7 +31,7 @@
 			<form action="create_user" method="post"
 				onclick="return validateFormInput">
 		</c:if>
-		<table>
+		<table class="form">
 			<tr>
 				<td align="right">Email:</td>
 				<td align="left"><input type="text" id="email" name="email"

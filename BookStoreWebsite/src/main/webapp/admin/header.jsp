@@ -5,14 +5,26 @@
 	<div>
 		Welcome, Admin | <a href="logout">Logout</a>
 	</div>
-	<div>
-		<b>
-		<a href="user_list">Users</a>
-		<a href="list_category">Categories</a>
-		<a href="books">Books</a>
-		<a href="customers">Customers</a>
-		<a href="reviews">Reviews</a>
-		<a href="orders">Orders</a>
-		</b>
+	<div id="headermenu">
+		<div >
+			<a href="user_list"><img src="../images/users.png" /><br />Users</a>
+		</div>
+		<div >
+			<a href="list_category"><img src="../images/category.png" /><br />Categories</a>
+		</div>
+		<div>
+			<a href="books"><img src="../images/book.png" /><br />Books</a>
+		</div>
+		<div>
+			<a href="customers"><img src="../images/customer.png" /><br />Customers</a>
+		</div>
+		<div >
+			<a href="reviews"><img src="../images/review.jpg" /><br />Reviews</a>
+		</div>
+		<div>
+			<a href="orders"><img src="../images/orders.png" /><br />Orders</a>
+		</div>
+
+
 	</div>
 </div>

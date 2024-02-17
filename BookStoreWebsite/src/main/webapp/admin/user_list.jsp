@@ -6,18 +6,19 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Manage Users -  BookStore Administration</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div align="center">
 		<hr width="60%" />
-		<h2>Users Management</h2>
+		<h1 class="pageheading">Users Management</h1>
 		<h3><a href="user_form.jsp">Create new User</a></h3>
 	</div>
 	
 	<div>
 	<c:if test="${message!=null }">
-		<h4><i>${message}</i></h4>
+		<h4 class="message">${message}</h4>
 	</c:if>
 	</div>
 	<div align="center">

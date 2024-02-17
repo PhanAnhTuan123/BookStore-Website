@@ -9,6 +9,7 @@
  	Edit Category
  </c:if> <c:if test="${category == null }">
 Create New Category</c:if></title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
