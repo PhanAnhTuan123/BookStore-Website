@@ -24,7 +24,7 @@
 		<c:if test="${user!=null }">
 			<form action="update_user" method="post"
 				onclick="return validateFormInput">
-				<input type="hidden" name="userId" value="${user.userId}"/>
+				<input type="hidden" name="userId" value="${user.userId}" />
 		</c:if>
 		<c:if test="${user==null }">
 			<form action="create_user" method="post"
@@ -35,11 +35,13 @@
 				<td align="right">Email:</td>
 				<td align="left"><input type="text" id="email" name="email"
 					size="20" value="${user.email}" /></td>
-
+			</tr>
+			<tr>
 				<td align="right">FullName:</td>
 				<td align="left"><input type="text" id="fullname"
 					name="fullname" size="20" value="${user.fullname}" /></td>
-
+			</tr>
+			<tr>
 				<td align="right">Password:</td>
 				<td align="left"><input type="text" id="password"
 					name="password" size="20" value="${user.password}" /></td>

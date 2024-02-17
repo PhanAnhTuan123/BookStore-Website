@@ -34,7 +34,7 @@
 					<td>${category.categoryId }</td>
 					<td>${category.name }</td>
 					<td>
-						<a href="edit_user?id=${category.categoryId}">Edit</a> &nbsp;
+						<a href="edit_category?id=${category.categoryId}">Edit</a> &nbsp;
 						<a href="javascript:confirmDelete(${category.categoryId})">Delete</a>
 						
 					</td>

@@ -14,9 +14,10 @@ import org.junit.Test;
 
 import com.bookstore.entity.entity3.Category;
 
-public class CategoryDAOTest extends BaseDAOTest{
+public class CategoryDAOTest extends BaseDAOTest {
 
 	private static CategoryDAO categoryDAO;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
@@ -37,7 +38,7 @@ public class CategoryDAOTest extends BaseDAOTest{
 		cat.setCategoryId(1);
 		Category cate = categoryDAO.update(cat);
 		assertEquals(cat.getName(), cate.getName());
-		
+
 	}
 
 	@Test
@@ -45,9 +46,8 @@ public class CategoryDAOTest extends BaseDAOTest{
 		Category newCat = new Category("Java");
 		categoryDAO = new CategoryDAO(entityManager);
 		Category category = categoryDAO.create(newCat);
-		
-		
-		assertTrue(category !=null && category.getCategoryId() > 0);
+
+		assertTrue(category != null && category.getCategoryId() > 0);
 
 	}
 
@@ -56,7 +56,6 @@ public class CategoryDAOTest extends BaseDAOTest{
 		Integer catId = 2;
 		Category cat = categoryDAO.get(catId);
 		assertNotNull(cat);
-		
 	}
 
 	@Test
@@ -69,16 +68,29 @@ public class CategoryDAOTest extends BaseDAOTest{
 
 	@Test
 	public void testListAll() {
-		List<Category>listCategory = categoryDAO.listAll();
-		listCategory.forEach(c-> System.out.println(c.getName()));
+		List<Category> listCategory = categoryDAO.listAll();
+		listCategory.forEach(c -> System.out.println(c.getName()));
 		assertTrue(listCategory.size() > 0);
-		
+
 	}
 
 	@Test
 	public void testCount() {
 		long totalCat = categoryDAO.count();
 		assertTrue(totalCat > 0);
+	}
+
+	@Test
+	public void testFindByName() {
+		String name = "Than thoai";
+		Category category = categoryDAO.findByName(name);
+		assertNotNull(category);
+	}
+	@Test
+	public void testFindByNameNotFound() {
+		String name = "Testing";
+		Category category = categoryDAO.findByName(name);
+		assertNull(category);
 	}
 
 }
