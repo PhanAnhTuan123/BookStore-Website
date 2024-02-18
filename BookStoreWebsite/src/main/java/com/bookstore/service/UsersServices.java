@@ -27,12 +27,22 @@ public class UsersServices {
 
 	public UsersServices(HttpServletRequest request, HttpServletResponse response) {
 		super();
+		new UsersServices();
+		this.request = request;
+		this.response = response;
+	}
+	
+	public UsersServices(EntityManagerFactory entityManagerFactory, EntityManager entityManager,
+			HttpServletRequest request, HttpServletResponse response) {
+		super();
+		this.entityManagerFactory = entityManagerFactory;
+		this.entityManager = entityManager;
 		this.request = request;
 		this.response = response;
 	}
 
 	public UsersServices() {
-
+		
 		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
 		entityManager = entityManagerFactory.createEntityManager();
 		userDao = new UserDAO(entityManager);
@@ -97,6 +107,20 @@ public class UsersServices {
 		String message = "User has been deleted successfully";
 		request.setAttribute("message", message);
 		listUser(request, response);
-		
+	}
+	public void login() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		boolean loginResult = userDao.checkLogin(email, password);
+		if(loginResult) {
+			request.getSession().setAttribute("useremail", email);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/");
+			dispatcher.forward(request, response);
+		}else {
+			String message = "Login Failed!";
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 }

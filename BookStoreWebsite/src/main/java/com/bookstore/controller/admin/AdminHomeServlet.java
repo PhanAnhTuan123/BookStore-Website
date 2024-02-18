@@ -25,5 +25,10 @@ public class AdminHomeServlet extends HttpServlet {
 		dispathcer.forward(request, response);
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		super.doGet(req, resp);
+	}
+
 
 }
