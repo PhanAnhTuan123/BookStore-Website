@@ -63,18 +63,26 @@ button {
 button[type=submit] {
 	font-weight: fold;
 }
-button:hover{
-	backgroubnd-color:white;
-	color:green;
+
+button:hover {
+	background-color: white;
+	color: green;
 }
 
-input{
-	border:1px solid;
-	border-radius:4px;
-	border-color:green;
-	height:20px;
+input {
+	border: 1px solid;
+	border-radius: 4px;
+	border-color: green;
+	height: 20px;
 }
-.message{
-	font-style:italic;
-	color:blue;
+
+.message {
+	font-style: italic;
+	color: blue;
+}
+
+.error {
+	color: red;
+	margin: 5px;
+	font-weight: italic;
 }

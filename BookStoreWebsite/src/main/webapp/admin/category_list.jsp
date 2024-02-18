@@ -8,6 +8,8 @@
 <meta charset="ISO-8859-1">
 <title>Manage Category -  BookStore Administration</title>
 <link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>

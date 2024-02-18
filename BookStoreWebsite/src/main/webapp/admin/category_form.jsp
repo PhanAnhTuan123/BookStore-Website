@@ -10,6 +10,8 @@
  </c:if> <c:if test="${category == null }">
 Create New Category</c:if></title>
 <link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>

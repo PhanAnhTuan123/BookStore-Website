@@ -7,6 +7,8 @@
 <meta charset="ISO-8859-1">
 <title>BookStore Administration</title>
 <link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -23,13 +25,11 @@
 	</div>
 	<div align="center">
 		<c:if test="${user!=null }">
-			<form action="update_user" method="post"
-				onclick="return validateFormInput">
+			<form action="update_user" method="post" id="userForm">
 				<input type="hidden" name="userId" value="${user.userId}" />
 		</c:if>
 		<c:if test="${user==null }">
-			<form action="create_user" method="post"
-				onclick="return validateFormInput">
+			<form action="create_user" method="post" id="userForm">
 		</c:if>
 		<table class="form">
 			<tr>
@@ -64,29 +64,26 @@
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
-	function validateFormInput() {
-		var fieldEmail = document.getElementById("email");
-		var fieldFullName = document.getElementById("fullname");
-		var fieldPassword = document.getElementById("password");
-		if (fieldEmail.value.length == 0) {
-			alert("Email is required!!")
-			fieldEmail.focus();
-			return false;
-		}
-
-		if (fieldFullname.value.length == 0) {
-			alert("Fullname is required!!")
-			fieldEmail.focus();
-			return false;
-		}
-
-		if (fieldPassword.value.length == 0) {
-			alert("Password is required!!")
-			fieldEmail.focus();
-			return false;
-		}
-
-	}
+	$(document).ready(function() {
+		$("#userForm").validate({
+			rules : {
+				email : {
+					required:true,
+					email:true
+				},
+				fullname : "required",
+				password : "required",
+			},
+			messages : {
+				email : {
+					required:"Please enter email",
+					email:"Please enter an valid email address"
+				},
+				fullname : "Please enter full name",
+				password : "Please enter password"
+			}
+		});
+	});
 </script>
 
 </html>
