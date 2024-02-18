@@ -109,7 +109,20 @@ public class UserDAOTest extends BaseDAOTest{
 		long totalUsers  = userDao.count();
 		assertTrue(totalUsers  == 7);
 	}
-
+	@Test
+	public void testCheckLoginSuccess() {
+		String email = "tuan@gmail.com";
+		String password = "my secret";
+		boolean checklogin = userDao.checkLogin(email, password);
+		assertTrue(checklogin);
+	}
+	@Test
+	public void testCheckLoginFail() {
+		String email = "tuantesting@gmail.com";
+		String password = "my secret testing";
+		boolean checklogin = userDao.checkLogin(email, password);
+		assertFalse(checklogin);
+	}
 	@AfterClass
 	public static void tearDownClass() {
 		entityManager.close();
