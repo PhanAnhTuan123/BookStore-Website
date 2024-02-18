@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -9,13 +12,16 @@ import com.bookstore.entity.entity3.Book;
 import com.bookstore.entity.entity3.Category;
 
 public class TestBook {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Book book = new Book();
 		book.setTitle("Demo");
 		book.setAuthor("Nguyen Binh");
 		book.setDescription("Tac gia cua nhung");
 		book.setIsbn("ISBn");
-		book.setImage(new byte[] {2,1,3,4,5});
+		String imagePath = "D:\\BookStoreWebSite\\BookStore-Website\\BookStore-Website\\BookStoreWebsite\\src\\main\\webapp\\images\\customer.png";
+
+		byte[] imageBytes =  Files.readAllBytes(Paths.get(imagePath));
+		book.setImage(imageBytes);
 		book.setPrice(40.4);
 		book.setPublish_date(new Date());
 		book.setLast_update_time(new Timestamp(2));
