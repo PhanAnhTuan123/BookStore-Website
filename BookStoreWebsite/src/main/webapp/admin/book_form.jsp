@@ -7,8 +7,11 @@
 <meta charset="ISO-8859-1">
 <title>BookStore Administration</title>
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../js/jquery-ui.css">
 <script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -29,7 +32,7 @@
 				<input type="hidden" name="userId" value="${user.userId}" />
 		</c:if>
 		<c:if test="${book==null }">
-			<form action="create_book" method="post" id="bookForm">
+			<form action="create_book" method="post" id="bookForm" enctype="multipart/form-data">
 		</c:if>
 		<table class="form">
 			<tr>
@@ -56,8 +59,12 @@
 			</tr>
 			<tr>
 				<td align="right">Book Image:</td>
-				<td align="left"><input type="file" id="bookImage" name="bookImage"
-					size="20" /></td>
+				<td align="left">
+				
+				<input type="file" id="bookImage" name="bookImage"
+					size="20" />
+				<img id="thumbnail" alt="Image Preview" style="width:20%; nargin-top:10px;"/>	
+					</td>
 			</tr>
 			<tr>
 				<td align="right">Price:</td>
@@ -100,25 +107,44 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#userForm").validate({
+		$("#publishDate").datepicker();
+		$("#bookImage").change(function(){
+			showImageThumbnail(this);
+		});
+		
+		$("#bookForm").validate({
 			rules : {
-				email : {
-					required:true,
-					email:true
-				},
-				fullname : "required",
-				password : "required",
+				category:"required",
+				title:"required",
+				author:"required",
+				isbn : "required",
+				bookImage : "required",
+				publistDate : "required",
+				price: "required",
+				description:"required"
 			},
 			messages : {
-				email : {
-					required:"Please enter email",
-					email:"Please enter an valid email address"
-				},
-				fullname : "Please enter full name",
-				password : "Please enter password"
+				category:"Please select a category for the book",
+				title : "Please enter title",
+				author : "Please enter author",
+				isbn : "Please enter isbn",
+				bookImage : "Please choose bookImage",
+				publistDate : "Please enter publistDate",
+				price : "Please enter price",
+				description : "Please enter description",
+				
 			}
 		});
 	});
+	function showImageThumbnail(FileInput){
+		var file = FileInput.files[0];
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$('#thumbnail').attr('src',e.target.result);
+		};
+		reader.readAsDataURL(file);
+		
+	}
 </script>
 
 </html>
