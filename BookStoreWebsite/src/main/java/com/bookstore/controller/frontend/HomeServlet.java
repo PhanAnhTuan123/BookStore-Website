@@ -28,11 +28,11 @@ public class HomeServlet extends BaseServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		CategoryDAO categoryDAO = new CategoryDAO(entityManager);
+//		CategoryDAO categoryDAO = new CategoryDAO(entityManager);
 		BookDao bookDao = new BookDao(entityManager);
 		List<Book>listNewBook = bookDao.listNewBook();
-		List<Category>listCategory = categoryDAO.listAll();
-		request.setAttribute("listCategory", listCategory);
+//		List<Category>listCategory = categoryDAO.listAll();
+//		request.setAttribute("listCategory", listCategory);
 		request.setAttribute("listNewBooks", listNewBook);
 		
 		String page = "/frontend/index.jsp";

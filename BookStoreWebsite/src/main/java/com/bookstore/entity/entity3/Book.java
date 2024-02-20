@@ -35,7 +35,9 @@ import javax.persistence.Transient;
 		@NamedQuery(name = "Book.countAll", query = "Select Count(*) from Book b"),
 		@NamedQuery(name = "Book.findByCategory", query = "Select b from book b join Category c on b.category.categoryId = c.categoryId and c.categoryId =:catId"),
 		@NamedQuery(name = "Book.listNew",query = "Select b from Book b order by b.publish_date desc"),
-		@NamedQuery(name = "Book.search",query = "Select b from Book b where b.title LIKE  '%' || :keyword || '%' or b.author  Like '%' :keyword || '%' or b.description like '%' || :keyword || '%' ")
+		@NamedQuery(name = "Book.search",query = "Select b from Book b where b.title LIKE  '%' || :keyword || '%' or b.author  Like '%' :keyword || '%' or b.description like '%' || :keyword || '%' "),
+		@NamedQuery(name = "Book.countByCategory",query = "Select count(*) from Book b join Category c on b.categoryId = c.categoryId where b.category.categoryId = :catId")	
+		
 })
 public class Book implements java.io.Serializable {
 	@Id

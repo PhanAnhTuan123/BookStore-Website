@@ -171,4 +171,10 @@ class BookDaoTest extends BaseDAOTest {
 		List<Book>result = bookDao.search(keyword);
 		assertTrue(result.size() > 0);
 	}
+	@org.junit.Test
+	public void testBookByCategory() {
+		int categoryId = 4;
+		long numOfBook = bookDao.countByCategory(categoryId);
+		assertTrue(numOfBook > 0);
+	}
 }

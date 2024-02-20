@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.dao.BookDao;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.entity3.Category;
 
@@ -95,9 +96,21 @@ public class CategoryServices {
 
 	public void deleteCategory() throws ServletException, IOException {
 		Integer categoryId = Integer.parseInt(request.getParameter("id"));
-		categoryDAO.delete(categoryId);
-		String message = "The category "+categoryId + " has been removed successfully.";
-		request.setAttribute("message", message);
+		
+		BookDao bookdao = new BookDao(entityManager);
+		long numberOfbooks = bookdao.countByCategory(categoryId);
+		if(numberOfbooks > 0) {
+			String message = "Could not delete the category (ID: %d) because it currently contains some books.";
+			message.format(message, numberOfbooks);
+			request.setAttribute("message", message);
+				
+		}else {
+			categoryDAO.delete(categoryId);
+			String message = "The category "+categoryId + " has been removed successfully.";
+			request.setAttribute("message", message);
+			
+		}
+		
 		listCategory();
 	}
 

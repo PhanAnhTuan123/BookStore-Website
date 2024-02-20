@@ -8,7 +8,9 @@
 <meta charset="ISO-8859-1">
 <title>BookStore Administration</title>
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/richtext.min.css">
 <link rel="stylesheet" href="../js/jquery-ui.css">
+<link rel="stylesheet" href="/path/to/font-awesome.min.css">
 <script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
@@ -111,6 +113,8 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#publishDate").datepicker();
+		$('#description').richText();
+
 		$("#bookImage").change(function() {
 			showImageThumbnail(this);
 		});

@@ -53,6 +53,8 @@ th {
 table.form {
 	border: 0;
 	padding: 4px;
+	width:80%;
+	margin : 0 auto;
 }
 
 button {
@@ -85,4 +87,53 @@ input {
 	color: red;
 	margin: 5px;
 	font-weight: italic;
+}
+div.center{
+	text-align:center;
+	
+}
+div.book{
+	display:inline-block;
+	margin:20px;
+	text-align:center;
+}
+div.book_group{
+	width:80%;
+	margin:0 auto;
+}
+div.next-row{
+	clear:both;
+}
+img.book-small{
+	width:128px;
+	height:164px;
+}
+table.book{
+	width:80%;
+	border:0;
+	margin:0 auto;
+}
+#book-title{
+	font-size:x-large;
+	font-weight:bold;
+}
+#author{
+	font-size:large;
+	font-style:italic;
+}
+#description{
+	text-align:justify;
+	vertical-align:top;
+}
+#search-image{
+	display:inline-block;
+	margin:20px;
+	width:10%;	
+}
+#search-description{
+	display:inline-block;
+	margin:20px;
+	vertical-align:top;
+	width:60%;
+	text-align:left;
 }
