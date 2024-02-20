@@ -186,4 +186,16 @@ public class BookServices {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(listPage);
 		dispatcher.forward(request, response);
 	}
+
+	public void viewBookDetail() throws ServletException, IOException {
+		Integer bookId = Integer.parseInt(request.getParameter("id"));
+		Book book = bookDao.get(bookId);
+		request.setAttribute("book", book);
+//		Category cate = category.get(categoryId);
+		List<Category>listCategory = category.listAll();
+		request.setAttribute("listCategory", listCategory);
+		String detailPage = "/frontend/book_detail.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(detailPage);
+		dispatcher.forward(request, response);
+	}
 }
