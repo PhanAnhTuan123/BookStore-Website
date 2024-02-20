@@ -20,6 +20,8 @@ public class JpaDAO<E> {
 	
 	public JpaDAO() {
 		super();
+		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
+
 	}
 
 	public JpaDAO(EntityManager entityManager) {
