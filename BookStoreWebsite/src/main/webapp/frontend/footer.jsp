@@ -1,5 +1,5 @@
 
-<div align="center">
+<div align="center" style="clear:both;">
 	<h4>Copyright (C) 2018 by Evergreen Book Co., Ltd</h4>
 	<a href="">About Us</a>
 	<a href="">Contact Us</a>

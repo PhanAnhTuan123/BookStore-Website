@@ -100,41 +100,58 @@ class BookDaoTest extends BaseDAOTest {
 		bookDao.delete(bookId);
 		assertTrue(true);
 	}
+
 	@org.junit.Test(expected = EntityNotFoundException.class)
 	public void testGetBookFail() {
 		Integer bookId = 99;
-		Book book =  bookDao.get(bookId);
+		Book book = bookDao.get(bookId);
 		assertNull(book);
 	}
+
 	@org.junit.Test(expected = EntityNotFoundException.class)
 	public void testGetBookSuccess() {
 		Integer bookId = 3;
-		Book book =  bookDao.get(bookId);
+		Book book = bookDao.get(bookId);
 		assertNotNull(book);
 	}
+
 	@org.junit.Test
 	public void testListAll() {
-		List<Book>listBook = bookDao.listAll();
+		List<Book> listBook = bookDao.listAll();
 		listBook.forEach(c -> System.out.println(c.toString()));
 		assertFalse(listBook.isEmpty());
 	}
+
 	@org.junit.Test
 	public void testFindByTitleNotExists() {
 		String title = "Lap Trinh";
-		Book book =  bookDao.findByTitle(title);
+		Book book = bookDao.findByTitle(title);
 		assertNull(book);
 	}
+
 	@org.junit.Test
 	public void testFindByTitleIsExists() {
 		String title = "Tieu Thuyet";
-		Book book =  bookDao.findByTitle(title);
+		Book book = bookDao.findByTitle(title);
 		assertNotNull(book);
 	}
+
 	@org.junit.Test
 	public void testCount() {
 		Integer totalBooks = (int) bookDao.count();
 		assertTrue(totalBooks > 0);
 	}
-	
-	
+
+	@org.junit.Test
+	public void testListByCategory() {
+		int categoryId = 1;
+		List<Book> books = bookDao.listByCategory(categoryId);
+		assertTrue(books.size() > 0);
+	}
+	@org.junit.Test
+	public void testListNewBooks() {
+		List<Book>listNewBooks = bookDao.listNewBook();
+		assertTrue(listNewBooks.size() > 0);
+	}
+
 }

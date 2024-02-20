@@ -173,4 +173,17 @@ public class BookServices {
 		request.setAttribute("message", message);
 		listBook();
 	}
+
+	public void listBooksByCategory() throws ServletException, IOException {
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		List<Book>listBooks = bookDao.listByCategory(categoryId);
+		Category category2 = category.get(listBooks);
+		List<Category>listCategory = category.listAll();
+		request.setAttribute("listCategory", listCategory);
+		request.setAttribute("category", category2);
+		request.setAttribute("listBooks", listBooks);
+		String listPage = "frontend/book_list_by_category.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(listPage);
+		dispatcher.forward(request, response);
+	}
 }
