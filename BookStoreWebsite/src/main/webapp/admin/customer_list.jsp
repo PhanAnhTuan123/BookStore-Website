@@ -48,8 +48,8 @@
 					<td>$ ${custommer.address.country }</td>
 					<td>$ ${custommer.register_date}</td>
 					
-					<td><a href="edit_book?id=${book.book_id}">Edit</a> &nbsp; <a
-						href="javascript:void(0)" class="deleteLink" id="${book.book_id}">Delete</a></td>
+					<td><a href="edit_customer?id=${customer.customerId}">Edit</a> &nbsp; <a
+						href="javascript:void(0)" class="deleteLink" id="${customer.customerId}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -61,10 +61,10 @@
 	$(document).ready(function(){
 		$(".deleteLink").each(function(){
 			$(this).on("click",function(){
-				userId = $(this).attr("id");
-				if (confirm("Are you sure you want to delete the book with ID: "
-						+ bookId + " ?")) {
-					window.location = 'delete_book?id=' + bookId;
+				cutomerId = $(this).attr("id");
+				if (confirm("Are you sure you want to delete the customer with ID: "
+						+ customerId + " ?")) {
+					window.location = 'delete_customer?id=' + customerId;
 				
 				}
 			});

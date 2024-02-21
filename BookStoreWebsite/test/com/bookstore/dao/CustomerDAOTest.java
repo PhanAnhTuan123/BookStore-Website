@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import javax.persistence.Persistence;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -11,11 +13,13 @@ import org.junit.jupiter.api.Test;
 import com.bookstore.entity.entity3.Address;
 import com.bookstore.entity.entity3.Customer;
 
-class CustomerDAOTest {
+class CustomerDAOTest extends BaseDAOTest{
 	private static CustomerDAO customerDAO;
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		customerDAO = new CustomerDAO();
+		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
+		entityManager = entityManagerFactory.createEntityManager();
+		customerDAO = new CustomerDAO(entityManager);
 	}
 
 	@AfterAll
