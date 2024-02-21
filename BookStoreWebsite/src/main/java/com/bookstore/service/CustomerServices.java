@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.bookstore.dao.CustomerDAO;
 import com.bookstore.entity.entity3.Customer;
 
+import antlr.debug.MessageAdapter;
+
 public class CustomerServices {
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
@@ -63,6 +65,49 @@ public class CustomerServices {
 			listCustomers();
 		}
 		
+	}
+	public void editCustomer() throws ServletException, IOException {
+		Integer customerId = Integer.parseInt(request.getParameter("id"));
+		Customer customer  =customerDao.get(customerId);
+		request.setAttribute("customer", customer);
+		String listPage = "customer_form.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(listPage);
+		dispatcher.forward(request, response);
+	}
+	public void updateCusomter() throws ServletException, IOException {
+		Integer customerId = Integer.parseInt(request.getParameter("id"));
+		String email = request.getParameter("email");
+		
+//		Customer customer  =customerDao.get(customerId);
+		Customer existsCustomer = customerDao.findByEmail(email);
+		if(existsCustomer!=null && existsCustomer.getCustomerId()!=customerId) {
+			String message= "Could not update the customerId: " +customerId +" because there's an existsing customer having the same email.";
+			request.setAttribute("message",message);
+		}else {
+			
+			String fullname = request.getParameter("fullName");
+			String password = request.getParameter("fullName");
+			String phone = request.getParameter("fullName");
+			String address = request.getParameter("fullName");
+			String city = request.getParameter("fullName");
+			String zipCode = request.getParameter("fullName");
+			String country = request.getParameter("country");
+			
+			Customer newCustomer = new Customer();
+			newCustomer.setEmail(email);
+			newCustomer.setFullname(fullname);
+			newCustomer.setPassword(password);
+			newCustomer.setPhone(phone);
+			newCustomer.setAddresss(address);
+			newCustomer.setcity(city);
+			newCustomer.setcontry(country);
+			newCustomer.setZipcode(zipCode);
+			customerDao.update(newCustomer);
+			String mesage = "The customer has been updated successfully";
+			request.setAttribute("message",mesage);
+			
+		}
+		listCustomers();
 	}
 	
 }
