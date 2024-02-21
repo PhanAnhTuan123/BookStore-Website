@@ -28,7 +28,10 @@ import antlr.collections.List;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Customer.findAll",query = "Select c from Customer c Order by c.register_date"),
-	@NamedQuery(name = "Customer.countAll",query = "Select Count(c.email) from Customer c")
+	@NamedQuery(name = "Customer.countAll",query = "Select Count(c.email) from Customer c"),
+	@NamedQuery(name = "Customer.findByEmail",query = "Select c from Customer c where c.email =:email")
+	
+	
 })
 public class Customer implements java.io.Serializable {
 
@@ -139,7 +142,19 @@ public class Customer implements java.io.Serializable {
 	public int hashCode() {
 		return Objects.hash(customerId, email);
 	}
-
+	public void setAddresss(String address) {
+		this.address.setAddress(address);
+	}
+	public void setcity(String city) {
+		this.address.setCity(city);
+	}
+	public void setcontry(String country) {
+		this.address.setCountry(country);
+	}
+	public void setZipcode(String zipcode) {
+		this.address.setZipcode(zipcode);
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

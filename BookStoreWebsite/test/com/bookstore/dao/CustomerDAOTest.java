@@ -70,5 +70,11 @@ class CustomerDAOTest {
 		int totalCountCus = (int) customerDAO.count();
 		assertTrue(totalCountCus > 0);
 	}
-
+	
+	@org.junit.Test
+	public void testFindByEmail() {
+		String email = "tom@gmail.com";
+		Customer customer = customerDAO.findByEmail(email);
+		assertNotNull(customer);
+	}
 }

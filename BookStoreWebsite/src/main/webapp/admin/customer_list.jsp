@@ -18,7 +18,7 @@
 		<hr width="60%" />
 		<h1 class="pageheading">Customer Management</h1>
 		<h3>
-			<a href="new_customer.jsp">Create new Customer</a>
+			<a href="customer_form.jsp">Create new Customer</a>
 		</h3>
 	</div>
 
