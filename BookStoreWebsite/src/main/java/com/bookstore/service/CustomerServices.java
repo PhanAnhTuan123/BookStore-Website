@@ -120,11 +120,11 @@ public class CustomerServices {
 		}else {
 			
 			String fullname = request.getParameter("fullName");
-			String password = request.getParameter("fullName");
-			String phone = request.getParameter("fullName");
-			String address = request.getParameter("fullName");
-			String city = request.getParameter("fullName");
-			String zipCode = request.getParameter("fullName");
+			String password = request.getParameter("password");
+			String phone = request.getParameter("phone");
+			String address = request.getParameter("address");
+			String city = request.getParameter("city");
+			String zipCode = request.getParameter("zipcode");
 			String country = request.getParameter("country");
 			
 			Customer newCustomer = new Customer();
@@ -179,6 +179,36 @@ public class CustomerServices {
 		String profile = "/frontend/customer_profile.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(profile);
 		dispatcher.forward(request, response);
+	}
+	public void showCustomerProfileEditForm() throws ServletException, IOException {
+		String profile = "/frontend/edit_profile.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(profile);
+		dispatcher.forward(request, response);
+	}
+	public void updateCustomerProfile() throws ServletException, IOException {
+		Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+		String email = request.getParameter("email");
+		String fullname = request.getParameter("fullName");
+		String password = request.getParameter("password");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String city = request.getParameter("city");
+		String zipCode = request.getParameter("zipcode");
+		String country = request.getParameter("country");
+		
+		Customer newCustomer = new Customer();
+		newCustomer.setEmail(email);
+		newCustomer.setFullname(fullname);
+		newCustomer.setPassword(password);
+		newCustomer.setPhone(phone);
+		newCustomer.setAddresss(address);
+		newCustomer.setcity(city);
+		newCustomer.setcontry(country);
+		newCustomer.setZipcode(zipCode);
+		customerDao.update(newCustomer);
+		String mesage = "The customer has been updated successfully. Thank you!!";
+		request.setAttribute("message",mesage);
+		showCustomerProfile();
 	}
 	
 }

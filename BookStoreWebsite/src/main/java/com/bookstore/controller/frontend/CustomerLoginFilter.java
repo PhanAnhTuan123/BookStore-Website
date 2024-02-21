@@ -19,7 +19,9 @@ import javax.websocket.Session;
  */
 @WebFilter("/*")
 public class CustomerLoginFilter extends HttpFilter implements Filter {
-      
+      private static final String[] requiredURLs = {
+    	"/view_profile","/edit_profile","/update_profile"	  
+      };
     public CustomerLoginFilter() {
         super();
         // TODO Auto-generated constructor stub
@@ -38,14 +40,23 @@ public class CustomerLoginFilter extends HttpFilter implements Filter {
 			chain.doFilter(httRequest, response);
 			return;
 		}
+		String requestURL = httRequest.getRequestURL().toString();
 		boolean logeedIn = session!=null && session.getAttribute("loggedCustomer") !=null;
-		if(!logeedIn && path.startsWith("view_profile")) {
+		if(!logeedIn && isLoginRequired(requestURL)) {
 			String loginPage = "frontend/login.jsp";
 			RequestDispatcher dispatcher = httRequest.getRequestDispatcher(loginPage);
 			dispatcher.forward(httRequest, response);
 		}else {
 			chain.doFilter(request, response);
 		}
+	}
+	private boolean isLoginRequired(String requestURL) {
+		for(String loginRequiredUDL : requiredURLs) {
+			if(requestURL.contains(loginRequiredUDL)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
