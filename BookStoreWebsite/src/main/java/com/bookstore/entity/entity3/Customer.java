@@ -29,7 +29,8 @@ import antlr.collections.List;
 @NamedQueries({
 	@NamedQuery(name = "Customer.findAll",query = "Select c from Customer c Order by c.register_date"),
 	@NamedQuery(name = "Customer.countAll",query = "Select Count(c.email) from Customer c"),
-	@NamedQuery(name = "Customer.findByEmail",query = "Select c from Customer c where c.email =:email")
+	@NamedQuery(name = "Customer.findByEmail",query = "Select c from Customer c where c.email =:email"),
+	@NamedQuery(name = "Customer.checkLogin",query = "Select c from Customer c where c.email :=email and c.password =:pass")
 	
 	
 })
