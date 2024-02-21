@@ -64,8 +64,42 @@ public class CustomerServices {
 			request.setAttribute("message", message);
 			listCustomers();
 		}
-		
 	}
+	
+	public void createRegisterCustomer() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		Customer existsCustomer = customerDao.findByEmail(email);
+		if(existsCustomer!=null) {
+			String message = "Could not register customer have the email" + email+" is already registered by another customer."; 
+			request.setAttribute("message", message);
+		}else {
+			String fullname = request.getParameter("fullName");
+			String password = request.getParameter("fullName");
+			String phone = request.getParameter("fullName");
+			String address = request.getParameter("fullName");
+			String city = request.getParameter("fullName");
+			String zipCode = request.getParameter("fullName");
+			String country = request.getParameter("country");
+			
+			Customer newCustomer = new Customer();
+			newCustomer.setEmail(email);
+			newCustomer.setFullname(fullname);
+			newCustomer.setPassword(password);
+			newCustomer.setPhone(phone);
+			newCustomer.setAddresss(address);
+			newCustomer.setcity(city);
+			newCustomer.setcontry(country);
+			newCustomer.setZipcode(zipCode);
+			customerDao.create(newCustomer);
+			String message = "New customer has been register successfully";
+			request.setAttribute("message", message);
+			
+		}
+		String messagePage = "frontend/message.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(messagePage);
+		dispatcher.forward(request, response);
+	}
+	
 	public void editCustomer() throws ServletException, IOException {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
 		Customer customer  =customerDao.get(customerId);
@@ -103,11 +137,13 @@ public class CustomerServices {
 			newCustomer.setcontry(country);
 			newCustomer.setZipcode(zipCode);
 			customerDao.update(newCustomer);
-			String mesage = "The customer has been updated successfully";
+			String mesage = "The customer has been updated successfully. Thank you!!";
 			request.setAttribute("message",mesage);
 			
 		}
 		listCustomers();
+
+		
 	}
 	public void deleteCustomer() throws ServletException, IOException {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));

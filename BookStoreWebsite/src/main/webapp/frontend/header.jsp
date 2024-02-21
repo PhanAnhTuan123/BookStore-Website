@@ -11,7 +11,7 @@
 			value="Search" /> 
 			
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
-			href="login.jsp">Sign in</a> <a href="">Register</a> <a href="">Cart</a>
+			href="login.jsp">Sign in</a> <a href="register">Register</a> <a href="view_cart">Cart</a>
 			</form>
 	</div>
 	<div>%nbsp;</div>

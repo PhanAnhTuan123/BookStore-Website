@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Phan Anh Tuan - Book Store Website</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
