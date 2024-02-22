@@ -3,6 +3,7 @@ package com.bookstore.entity.entity3;
 import java.security.Timestamp;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Comparator;
 
 // Generated Feb 4, 2024, 9:52:51 AM by Hibernate Tools 5.6.15.Final
 
@@ -11,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.CascadeType;
@@ -104,9 +106,14 @@ public class Book implements java.io.Serializable {
 		for(int j=next;j<=5;j++) {
 			result+="off";
 		}
-		return  result.substring(0,result.length()-1);
-		
+		return  result.substring(0,result.length()-1);	
 	}
+	@Transient
+	public String getRatingStars() {
+		float averRating = getAverageRating();
+		return getRatingString(averRating);
+	}
+	
 	public Book() {
 		super();
 	}
@@ -171,7 +178,15 @@ public class Book implements java.io.Serializable {
 	}
 
 	public List<Review> getReviews() {
-		return reviews;
+		TreeSet<Review>sortedReviews = new TreeSet<Review>(new Comparator<Review>() {
+			@Override
+			public int compare(Review o1, Review o2) {
+				return o1.getReview_time().compareTo(o2.getReview_time());
+			}
+		});
+		sortedReviews.addAll(reviews);
+		return (List<Review>) sortedReviews;
+
 	}
 
 	public void setReviews(List<Review> reviews) {
