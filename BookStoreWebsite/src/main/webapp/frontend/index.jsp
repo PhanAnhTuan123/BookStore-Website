@@ -29,7 +29,7 @@
 						</a>
 					</div>
 
-					<div>Rating*****</div>
+					<div>${book.ratingStars}</div>
 					<div>
 						<i>by ${book.author}</i>
 					</div>

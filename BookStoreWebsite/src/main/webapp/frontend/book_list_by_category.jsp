@@ -27,7 +27,9 @@
 				</a>
 			</div>
 			
-			<div>Rating*****</div>
+			<div>
+				<jsp:include page="book_rating.jsp"></jsp:include>
+			</div>
 			<div><i>by ${book.author}</i></div>
 			<div><b>$ ${book.price}</b></div>
 		</c:forEach>
