@@ -78,4 +78,19 @@ public class ReviewDAOTest extends BaseDAOTest{
 		Review review = reviewDao.get(id);
 		assertNull(review);
 	}
+	@Test
+	public void testFindByCustomerandBookNotfound() {
+		Integer customerId = 1;
+		Integer bookId = 99;
+		Review result = reviewDao.findByCustomerAndBook(customerId, bookId);
+		assertNull(result);
+	}
+	@Test
+	public void testFindByCustomerandBookSuccess() {
+		Integer customerId = 1;
+		Integer bookId = 7;
+		Review result = reviewDao.findByCustomerAndBook(customerId, bookId);
+		assertNull(result);
+	}
+	
 }
