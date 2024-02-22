@@ -60,7 +60,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 		}
 		return null;
 	}
-	public Customer checkLogin(String email,String password) {
+	public Customer checkLogin(String email,Object password) {
 		Map<String, Object>parameters = new HashMap<String, Object>();
 		parameters.put("email", email);
 		parameters.put("pass", password);
