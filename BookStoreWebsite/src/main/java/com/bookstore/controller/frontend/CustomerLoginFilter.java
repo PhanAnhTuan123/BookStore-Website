@@ -20,7 +20,7 @@ import javax.websocket.Session;
 @WebFilter("/*")
 public class CustomerLoginFilter extends HttpFilter implements Filter {
       private static final String[] requiredURLs = {
-    	"/view_profile","/edit_profile","/update_profile"	  
+    	"/view_profile","/edit_profile","/update_profile","/write_review"	  
       };
     public CustomerLoginFilter() {
         super();
@@ -43,6 +43,13 @@ public class CustomerLoginFilter extends HttpFilter implements Filter {
 		String requestURL = httRequest.getRequestURL().toString();
 		boolean logeedIn = session!=null && session.getAttribute("loggedCustomer") !=null;
 		if(!logeedIn && isLoginRequired(requestURL)) {
+			String queryString = httRequest.getQueryString();
+			String redirectURL = requestURL;
+			if(queryString !=null) {
+				redirectURL = redirectURL.concat("?").concat(queryString);
+			}
+			
+			session.setAttribute("redirectURL", requestURL);
 			String loginPage = "frontend/login.jsp";
 			RequestDispatcher dispatcher = httRequest.getRequestDispatcher(loginPage);
 			dispatcher.forward(httRequest, response);

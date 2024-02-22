@@ -82,5 +82,14 @@
 		<div align="left"></div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$("#buttonWriteReview").click(function(){
+				window.location = 'write_review?id=' + ${book.bookId};
+			});		
+		});
+	
+	</script>
 </body>
 </html>

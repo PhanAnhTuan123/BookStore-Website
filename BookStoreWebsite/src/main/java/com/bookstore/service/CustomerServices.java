@@ -9,6 +9,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bookstore.dao.CustomerDAO;
 import com.bookstore.entity.entity3.Customer;
@@ -167,12 +168,22 @@ public class CustomerServices {
 			request.setAttribute("message", message);
 			showLogin();
 		}else {
+			HttpSession session = request.getSession();
+			Object objRedirectURL = session.getAttribute("redirecURL");
 			request.getSession().setAttribute("loggedCustomer", cus);
+			if(objRedirectURL !=null) {
+				String redirectURL = (String) objRedirectURL;
+				session.removeAttribute("redirectURL");
+				response.sendRedirect(redirectURL);
+			}else {
+				String loginPage = "frontend/customer_profile.jsp";
+//				RequestDispatcher dispatcher = request.getRequestDispatcher(loginPage);
+//				dispatcher.forward(request, response);
+				showCustomerProfile();
+			}
 			
-			String loginPage = "frontend/customer_profile.jsp";
-//			RequestDispatcher dispatcher = request.getRequestDispatcher(loginPage);
-//			dispatcher.forward(request, response);
-			showCustomerProfile();
+			
+			
 		}
 	}
 	public void showCustomerProfile() throws ServletException, IOException {
