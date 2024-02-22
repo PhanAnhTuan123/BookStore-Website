@@ -67,12 +67,46 @@ public class Book implements java.io.Serializable {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
+	
+	
 	@OneToMany(mappedBy = "book")
 	private List<Review> reviews;
 
 	@OneToMany(mappedBy = "book")
 	private List<OrderDetail> detail;
 
+	@Transient
+	public float getAverageRating() {
+		float averageRating = 0.0f;
+		float sum = 0.0f;
+		if(reviews.isEmpty()) {
+			return 0.0f;
+		}
+		for (Review review : reviews) {
+			sum+=review.getFating();
+		}
+		averageRating = sum/ reviews.size();
+		
+		return averageRating;
+	}
+	@Transient
+	public String getRatingString(float averageRating) {
+		String result = "";
+		int numberOfStarsOn = (int) averageRating;
+		for(int i=1;i<=numberOfStarsOn;i++) {
+			result +="on,";
+		}
+		int next = numberOfStarsOn + 1;
+		if(averageRating > numberOfStarsOn) {
+			result+="half,";
+			next++;
+		}
+		for(int j=next;j<=5;j++) {
+			result+="off";
+		}
+		return  result.substring(0,result.length()-1);
+		
+	}
 	public Book() {
 		super();
 	}

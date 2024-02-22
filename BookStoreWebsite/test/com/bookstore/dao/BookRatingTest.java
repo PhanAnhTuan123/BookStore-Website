@@ -35,7 +35,14 @@ class BookRatingTest extends BaseDAOTest{
 		float averRating =  book.getAverageRating();
 	
 		assertEquals(5.0, averRating);
-	
+	}
+	@org.junit.Test
+	public void testRatingString1() {
+		float averageRating = 0.0f;
+		Book book = new Book();
+		String ratingString = book.getRatingString(averageRating);
+		String expect = "off,off,off,off,off";
+		assertEquals(expect, ratingString);
 	}
 
 }
