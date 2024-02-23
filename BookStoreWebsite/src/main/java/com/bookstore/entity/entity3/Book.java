@@ -133,6 +133,10 @@ public class Book implements java.io.Serializable {
 		this.category = category;
 	}
 
+	public Book(Integer bookID) {
+		super();
+		this.bookID = bookID;
+	}
 	public Integer getBookID() {
 		return bookID;
 	}
