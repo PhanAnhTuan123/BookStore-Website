@@ -16,10 +16,10 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div align="center">
-		<form action="post" id="reviewForm">
+		<form   id="reviewForm">
 			<table class="normal" width="60%">
 				<tr>
-					<td><h2>Your Reviews</h2></td>
+					<td><h2>Your already wrote a review for this book.</h2></td>
 					<td>&nbsp;</td>
 					<td>${loggedCustomer.fullName}</td>
 				</tr>
@@ -36,14 +36,13 @@
 						width="240" height="300" /></td>
 				<td>
 				<div id="rateYo"></div>
-				<input type="hidden" id="rating" name="rating" />
-				<input type="hidden" id="bookId" name="bookId" value="${book.bookId}"/>
+
 				
 				<br/>
-					<input type="text" name="headline" size="60" placeholder="Headline or summary for your review(required)"/>
+					<input type="text" name="headline" size="60" readonly="readonly" value="${review.headline }"/>
 					<br/>
 					<br/>
-					<textarea rows="70" cols="10" name="comment" placeholder="Write your review details..."></textarea>
+					<textarea rows="70" cols="10" name="comment"  readonly="readonly" >${review.comment }</textarea>
 				</td>
 				</tr>
 				<tr>
@@ -62,28 +61,13 @@
 			$(document).ready(function() {
 				$("#rateYo").rateYo({
 				    starWidth: "40px",
+				    rating:${review.fating},
+				    readOnly:true,
 				    fullStar: true,
 				    onSet: function(rating,rateYoInstance){
 				    	$("#rating").val(rating);
 				    }
 				  });
-				
-				$("#reviewForm").validate({
-					rules : {
-						headline : "required",
-						comment : "required",
-					},
-					messages : {
-						email : {
-							headline : "Please enter email",
-							comment : "Please enter an valid email address"
-						},
-						password : "Please enter password"
-					}
-				});
-				$("#buttonCancel").click(function(){
-					history.go(-1);
-				});
 			});
 		</script>
 </body>

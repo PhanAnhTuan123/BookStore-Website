@@ -176,7 +176,7 @@ public class CustomerServices {
 				session.removeAttribute("redirectURL");
 				response.sendRedirect(redirectURL);
 			}else {
-				String loginPage = "frontend/customer_profile.jsp";
+//				String loginPage = "frontend/customer_profile.jsp";
 //				RequestDispatcher dispatcher = request.getRequestDispatcher(loginPage);
 //				dispatcher.forward(request, response);
 				showCustomerProfile();
