@@ -43,6 +43,17 @@ public class ShoppingCart {
 		}
 		return total;
 	}
+	public void updateCart(int[] bookIds,int[] quantities) {
+		for(int i =0;i<bookIds.length;i++) {
+			Book key = new Book(bookIds[i]);
+			Integer value = quantities[i];
+			cart.put(key, value);
+		}
+	}
+	public int getTotalItems() {
+		return cart.size();
+	}
+	
 	public Map<Book, Integer>getItems(){
 		return this.cart;
 	}
