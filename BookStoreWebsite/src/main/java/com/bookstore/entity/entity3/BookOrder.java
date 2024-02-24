@@ -18,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,6 +33,10 @@ import com.bookstore.enumeration.StatusBookOrder;
  */
 @Entity
 @Table(name = "book_order")
+@NamedQueries({
+	@NamedQuery(name = "BookOrder.listAll",query = "Select bo from BookOrder bo order by bo.order_date DESC"),
+	@NamedQuery(name = "BookOrder.countAll",query = "Select Count(bo) from BookOrder bo")
+})
 public class BookOrder implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

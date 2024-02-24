@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.controller.BaseServlet;
+import com.bookstore.entity.entity3.Book;
 
 /**
  * Servlet implementation class ViewCartServlet
@@ -25,6 +26,14 @@ public class ViewCartServlet extends BaseServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Object cartObject = request.getSession().getAttribute("cart");
+		
+		if(cartObject==null) {
+			ShoppingCart cart = new ShoppingCart();
+			request.getSession().setAttribute("cart", cart);
+		}
+//		Book
+		
 		String path = "frontend/shopping_cart.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);
