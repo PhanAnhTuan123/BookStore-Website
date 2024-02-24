@@ -25,7 +25,7 @@
 			<a href="list_reviews"><img src="../images/review.jpg" /><br />Reviews</a>
 		</div>
 		<div>
-			<a href="orders"><img src="../images/orders.png" /><br />Orders</a>
+			<a href="list_orders"><img src="../images/orders.png" /><br />Orders</a>
 		</div>
 
 

@@ -22,6 +22,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.ManyToAny;
 
@@ -67,6 +68,16 @@ public class BookOrder implements java.io.Serializable {
 	@OneToMany(mappedBy = "bookOrder")
 	private List<OrderDetail> detail;
 
+	@Transient
+	public int getBookCopies() {
+		int total = 0;
+		for (OrderDetail orderDetail : detail) {
+			total+=orderDetail.getQuantity();
+		}
+		return total;
+	}
+	
+	
 	public BookOrder(Integer orderId, Customer customer_id, Timestamp order_date, String shipping_address,
 			String recipient_name, String recipient_phone, Payment_method payment_method, double total,
 			StatusBookOrder status) {
