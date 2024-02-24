@@ -36,7 +36,11 @@ import com.bookstore.enumeration.StatusBookOrder;
 @Table(name = "book_order")
 @NamedQueries({
 	@NamedQuery(name = "BookOrder.listAll",query = "Select bo from BookOrder bo order by bo.order_date DESC"),
-	@NamedQuery(name = "BookOrder.countAll",query = "Select Count(bo) from BookOrder bo")
+	@NamedQuery(name = "BookOrder.countAll",query = "Select Count(bo) from BookOrder bo"),
+	@NamedQuery(name = "BookOrder.findByCustomer",query = "Select bo from BookOrder bo where bo.customer.customerId=:customerId order by bo.orderDate DESC"),
+	@NamedQuery(name = "BookOrder.findByIdAndCustomer",query = "Select bo from BookOrder bo where bo.orderId =:orderId and bo.customer.customerI =:customerId")
+
+
 })
 public class BookOrder implements java.io.Serializable {
 	@Id

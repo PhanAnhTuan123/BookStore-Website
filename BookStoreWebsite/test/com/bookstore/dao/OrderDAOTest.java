@@ -115,6 +115,29 @@ class OrderDAOTest extends BaseDAOTest {
 		long total  = orderDao.count();
 		assertTrue(total > 0);
 	}
-	
-
+	@org.junit.Test
+	public void testListByCustomerNoOrders() {
+		Integer id = 99;
+		List<BookOrder>listOrders = orderDao.listByCustomer(id);
+		assertTrue(listOrders.isEmpty());
+	}
+	public void testListByCustomerHaveOrders() {
+		Integer id = 1;
+		List<BookOrder>listOrders = orderDao.listByCustomer(id);
+		assertTrue(!listOrders.isEmpty());
+	}
+	@org.junit.Test
+	public void testGetByIdandCustomerNull() {
+		Integer orderId = 10;
+		Integer customerId = 99;
+		BookOrder order =orderDao.get(orderId, customerId);
+		assertNull(order);
+	}
+	@org.junit.Test
+	public void testGetByIdandCustomerNotNull() {
+		Integer orderId = 10;
+		Integer customerId = 9;
+		BookOrder order =orderDao.get(orderId, customerId);
+		assertNull(order);
+	}
 }
