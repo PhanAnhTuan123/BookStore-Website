@@ -22,6 +22,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.bookstore.entity.entity3.Book;
+import com.bookstore.entity.entity3.BookOrder;
 import com.bookstore.entity.entity3.Category;
 
 class BookDaoTest extends BaseDAOTest {
@@ -177,4 +178,16 @@ class BookDaoTest extends BaseDAOTest {
 		long numOfBook = bookDao.countByCategory(categoryId);
 		assertTrue(numOfBook > 0);
 	}
+	@org.junit.Test
+	public void testListBestSellingBooks() {
+		List<Book>topBestSellingBooks = bookDao.listBestSellingBooks();
+		topBestSellingBooks.forEach(c -> System.out.println(c.toString()));
+		assertEquals(4, topBestSellingBooks.size());
+	}
+	@org.junit.Test
+	public void testlistMostFavoredBooks() {
+		List<Book>topFavoredBooks = bookDao.listMostFavoredBooks();
+		assertEquals(4,topFavoredBooks.size());
+	}
+	
 }

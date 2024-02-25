@@ -33,6 +33,10 @@ public class HomeServlet extends BaseServlet {
 		List<Book>listNewBook = bookDao.listNewBook();
 //		List<Category>listCategory = categoryDAO.listAll();
 //		request.setAttribute("listCategory", listCategory);
+		List<Book>listBestSellingBook = bookDao.listBestSellingBooks();
+		List<Book>listFavoredbook = bookDao.listMostFavoredBooks();
+		request.setAttribute("mostFavoredBooks", listFavoredbook);
+		request.setAttribute("listBestSellingBook", listBestSellingBook);
 		request.setAttribute("listNewBooks", listNewBook);
 		
 		String page = "/frontend/index.jsp";

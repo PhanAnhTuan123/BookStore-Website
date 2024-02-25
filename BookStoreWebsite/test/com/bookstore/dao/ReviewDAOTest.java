@@ -92,5 +92,10 @@ public class ReviewDAOTest extends BaseDAOTest{
 		Review result = reviewDao.findByCustomerAndBook(customerId, bookId);
 		assertNull(result);
 	}
+	@Test
+	public void testListMostRecent() {
+		List<Review>recentReviews = reviewDao.listMostRecent();
+		assertEquals(3, recentReviews.size());
+	}
 	
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
+import com.bookstore.entity.entity3.Book;
 import com.bookstore.entity.entity3.BookOrder;
 import com.bookstore.entity.entity3.Customer;
 
@@ -59,5 +60,9 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 	public List<BookOrder>listByCustomer(Integer id){
 		
 		return super.findWithNamedQuery("BookOrder.findByCustomer","customerId",id);
+	}
+	public List<BookOrder>listMostRecentSales(){
+		return super.findWithNamedQuery("BookOrder.findAll",0,3);
+		
 	}
 }
