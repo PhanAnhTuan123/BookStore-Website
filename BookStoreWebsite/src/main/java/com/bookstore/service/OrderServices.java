@@ -123,10 +123,28 @@ public class OrderServices {
 		request.setAttribute("order", order); 
 		HttpSession session =request.getSession();
 		Customer customer = (Customer) session.getAttribute("loggedCustomer");
-		BookOrder order = orderDAO.get(customer, customer.getCustomerId());
+		BookOrder updatedorder = orderDAO.get(customer, customer.getCustomerId());
 		String messagePage = "frontend/order_detail.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(messagePage);
 		dispatcher.forward(request, response);
 		
+	}
+
+	public void showEditORder() throws ServletException, IOException {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		
+		HttpSession session = request.getSession();
+		Object isPendingBook = session.getAttribute("NewBookPendingToAddToOrder");
+		if(isPendingBook ==null) {
+			BookOrder order = orderDAO.get(id);
+			session.setAttribute("order", order);
+		}else {
+			session.removeAttribute("NewBookPendingToAddToOrder");
+		}
+//		session.setAttribute("editOrder", order);
+//		request.setAttribute("order", order);
+		String messagePage = "frontend/order_form.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(messagePage);
+		dispatcher.forward(request, response);
 	}
 }
