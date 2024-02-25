@@ -63,9 +63,9 @@
 
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script>
-		function confirmDetete(review_id){
+		function confirmDetete(orderId){
 	if(confirm("Are you sure you want to delete the category with ID: "+review_id + " ?")){
-		window.location = 'delete_review?id='+review_id;
+		window.location = 'delete_order?id='+orderId;
 	}
 		}
 	</script>
