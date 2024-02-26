@@ -140,4 +140,9 @@ class OrderDAOTest extends BaseDAOTest {
 		BookOrder order =orderDao.get(orderId, customerId);
 		assertNull(order);
 	}
+	@org.junit.Test
+	public void testListMostRecentSales() {
+		List<BookOrder>recentOrders = orderDao.listMostRecentSales();
+		assertEquals(4,recentOrders.size() );
+	}
 }
